@@ -62,7 +62,11 @@ export default class RailsLiveReload {
   }
 
   fullReload() {
-    window.location.reload();
+    if (typeof Turbo !== "undefined") {
+      Turbo.visit(location.href);
+    } else {
+      window.location.reload();
+    }
   }
 
   get optionsNode() {
